@@ -75,3 +75,158 @@
 // =============================================================================
 
 
+function add(a, b) {
+    return a + b;
+}
+
+// Subtraction
+function subtract(a, b) {
+    return a - b;
+}
+
+// Multiplication
+function multiply(a, b) {
+    return a * b;
+}
+
+// Division
+function divide(a, b) {
+    if (b === 0) {
+        return null;
+    }
+
+    return a / b;
+}
+
+// Modulus
+function modulus(a, b) {
+    if (b === 0) {
+        return null;
+    }
+
+    return a % b;
+}
+
+// Exponentiation
+function exponentiate(a, b) {
+    return a ** b;
+}
+
+// -----------------------------------------------------------------------------
+// Function: displayMenu
+// Displays the calculator menu.
+// -----------------------------------------------------------------------------
+function displayMenu() {
+    console.log("\n============================");
+    console.log("      SIMPLE CALCULATOR");
+    console.log("============================");
+    console.log("1. Addition");
+    console.log("2. Subtraction");
+    console.log("3. Multiplication");
+    console.log("4. Division");
+    console.log("5. Modulus");
+    console.log("6. Exponentiation");
+    console.log("7. Quit");
+}
+
+// -----------------------------------------------------------------------------
+// Main function
+// -----------------------------------------------------------------------------
+function main() {
+
+    let running = true;
+
+    while (running) {
+
+        displayMenu();
+
+        const choice = readlineSync.questionInt(
+            "Select an operation (1-7): "
+        );
+
+        // Quit
+        if (choice === 7) {
+            console.log("Goodbye!");
+            running = false;
+            continue;
+        }
+
+        // Check for invalid choices
+        if (choice < 1 || choice > 7) {
+            console.log(
+                "Error: Invalid choice. Please select a number from 1 to 7."
+            );
+            continue;
+        }
+
+        // Get numbers
+        const firstNumber = readlineSync.questionFloat(
+            "Enter first number : "
+        );
+
+        const secondNumber = readlineSync.questionFloat(
+            "Enter second number: "
+        );
+
+        let result;
+        let operator;
+
+        // Perform selected operation
+        switch (choice) {
+
+            case 1:
+                result = add(firstNumber, secondNumber);
+                operator = "+";
+                break;
+
+            case 2:
+                result = subtract(firstNumber, secondNumber);
+                operator = "-";
+                break;
+
+            case 3:
+                result = multiply(firstNumber, secondNumber);
+                operator = "*";
+                break;
+
+            case 4:
+                if (secondNumber === 0) {
+                    console.log("Error: Cannot divide by zero.");
+                    continue;
+                }
+
+                result = divide(firstNumber, secondNumber);
+                operator = "/";
+                break;
+
+            case 5:
+                if (secondNumber === 0) {
+                    console.log("Error: Cannot calculate modulus by zero.");
+                    continue;
+                }
+
+                result = modulus(firstNumber, secondNumber);
+                operator = "%";
+                break;
+
+            case 6:
+                result = exponentiate(firstNumber, secondNumber);
+                operator = "**";
+                break;
+        }
+
+        console.log(
+            "Result: " +
+            firstNumber +
+            " " +
+            operator +
+            " " +
+            secondNumber +
+            " = " +
+            result.toFixed(2)
+        );
+    }
+}
+
+// Start the calculator
+main();
