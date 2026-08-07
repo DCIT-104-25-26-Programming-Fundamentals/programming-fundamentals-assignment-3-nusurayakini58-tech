@@ -60,3 +60,63 @@
 // =============================================================================
 
 
+function singleTable(number) {
+    console.log("\nMultiplication Table for " + number + ":");
+
+    for (let i = 1; i <= 12; i++) {
+        console.log(number + " x " + i + " = " + (number * i));
+    }
+}
+
+// -----------------------------------------------------------------------------
+// PART B — Multiplication Tables from 1 to N
+// -----------------------------------------------------------------------------
+function multipleTables(n) {
+    for (let number = 1; number <= n; number++) {
+
+        console.log("\nMultiplication Table for " + number + ":");
+
+        for (let i = 1; i <= 12; i++) {
+            console.log(number + " x " + i + " = " + (number * i));
+        }
+
+        if (number < n) {
+            console.log("---------------------------");
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------
+// Main function
+// -----------------------------------------------------------------------------
+function main() {
+
+    // =========================================================================
+    // PART A — Single Table
+    // =========================================================================
+
+    const number = readlineSync.questionInt("Enter a number: ");
+
+    if (number <= 0) {
+        console.log("Error: Number must be a positive integer.");
+        return;
+    }
+
+    singleTable(number);
+
+    // =========================================================================
+    // PART B — Tables from 1 to N
+    // =========================================================================
+
+    const n = readlineSync.questionInt("\nEnter N for tables from 1 to N: ");
+
+    if (n <= 0) {
+        console.log("Error: N must be a positive integer.");
+        return;
+    }
+
+    multipleTables(n);
+}
+
+// Call the main function
+main();
